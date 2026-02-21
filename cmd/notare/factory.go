@@ -14,12 +14,12 @@ const (
 )
 
 func NewNotareClient() NotareProvider {
-	// 1. Check for an explicit override (e.g., NOATARE_PROVIDER=chalk)
-	provider := ProviderType(os.Getenv("NOATARE_PROVIDER"))
+	// 1. Check for an explicit override (e.g., NOTARE_PROVIDER=chalk)
+	provider := ProviderType(os.Getenv("NOTARE_PROVIDER"))
 
 	// 2. Logic to "Auto-Detect" if no override is provided
 	if provider == "" {
-		username := os.Getenv("NOATARE_USERNAME")
+		username := os.Getenv("NOTARE_USERNAME")
 		if username == "" {
 			provider = Chalk
 		} else {
@@ -31,15 +31,15 @@ func NewNotareClient() NotareProvider {
 	switch provider {
 	case Chalk:
 		return &ChalkClient{
-			BaseURL:  os.Getenv("NOATARE_URL"),
-			APIToken: os.Getenv("NOATARE_API_TOKEN"),
+			BaseURL:  os.Getenv("NOTARE_URL"),
+			APIToken: os.Getenv("NOTARE_API_TOKEN"),
 			Client:   &http.Client{},
 		}
 	default:
 		return &ConfluenceClient{
-			BaseURL:  os.Getenv("NOATARE_URL"),
-			Username: os.Getenv("NOATARE_USERNAME"),
-			APIToken: os.Getenv("NOATARE_API_TOKEN"),
+			BaseURL:  os.Getenv("NOTARE_URL"),
+			Username: os.Getenv("NOTARE_USERNAME"),
+			APIToken: os.Getenv("NOTARE_API_TOKEN"),
 			Client:   &http.Client{},
 		}
 	}
