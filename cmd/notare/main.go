@@ -27,8 +27,6 @@ func main() {
 		Short: "Documentation CLI for Neovim integration",
 	}
 
-	// Get credentials from environment variables
-
 	// Spaces command
 	spacesCmd := &cobra.Command{
 		Use:   "spaces",
