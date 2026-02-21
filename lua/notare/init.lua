@@ -124,31 +124,31 @@ function M.setup(opts)
 	end
 
 	-- Create user commands
-	vim.api.nvim_create_user_command("notarePush", function()
+	vim.api.nvim_create_user_command("NotarePush", function()
 		require("notare.push").push_current_file()
 	end, { desc = "Push current markdown file to Conflunce" })
 
-	vim.api.nvim_create_user_command("notarePull", function()
+	vim.api.nvim_create_user_command("NotarePull", function()
 		require("notare.pull").pull_page()
 	end, { desc = "Pull a Confluence page as markdown" })
 
-	vim.api.nvim_create_user_command("notareUpdate", function()
+	vim.api.nvim_create_user_command("NotareUpdate", function()
 		require("notare.update").update_current_file()
 	end, { desc = "Update existing Confluence page" })
 
-	vim.api.nvim_create_user_command("notareSpaces", function()
+	vim.api.nvim_create_user_command("NotareSpaces", function()
 		require("notare.spaces").list_spaces()
 	end, { desc = "Browse Confluence spaces" })
 
-	vim.api.nvim_create_user_command("notarePages", function()
+	vim.api.nvim_create_user_command("NotarePages", function()
 		require("notare.pages").list_pages()
 	end, { desc = "Browse Confluence pages" })
 
-	vim.api.nvim_create_user_command("notareNewDoc", function()
+	vim.api.nvim_create_user_command("NotareNewDoc", function()
 		require("notare.new").create_new_doc()
 	end, { desc = "Create new document from template" })
 
-	vim.api.nvim_create_user_command("notareNewDocTemplate", function()
+	vim.api.nvim_create_user_command("NotareNewDocTemplate", function()
 		require("notare.new").create_new_doc_with_template()
 	end, { desc = "Create new document and select template" })
 
