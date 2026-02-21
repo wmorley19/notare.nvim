@@ -23,7 +23,7 @@ var (
 
 func main() {
 	rootCmd := &cobra.Command{
-		Use:   "scribe-cli",
+		Use:   "notare-cli",
 		Short: "Documentation CLI for Neovim integration",
 	}
 
@@ -104,7 +104,7 @@ func main() {
 }
 
 func runListSpaces(cmd *cobra.Command, args []string) error {
-	client := NewScribeClient()
+	client := NewNotareClient()
 	opts := &ListOptions{
 		Limit:  limit,
 		Offset: offset,
@@ -135,7 +135,7 @@ func runCreatePage(cmd *cobra.Command, args []string) error {
 		return fmt.Errorf("invalid file path")
 	}
 
-	client := NewScribeClient()
+	client := NewNotareClient()
 
 	content, err := os.ReadFile(filePath)
 	if err != nil {
@@ -169,7 +169,7 @@ func runUpdatePage(cmd *cobra.Command, args []string) error {
 		return fmt.Errorf("invalid file path")
 	}
 
-	client := NewScribeClient()
+	client := NewNotareClient()
 
 	content, err := os.ReadFile(filePath)
 	if err != nil {
@@ -198,7 +198,7 @@ func runGetPage(cmd *cobra.Command, args []string) error {
 		return fmt.Errorf("page ID is required")
 	}
 
-	client := NewScribeClient()
+	client := NewNotareClient()
 
 	page, err := client.GetPage(pageID)
 	if err != nil {
@@ -212,7 +212,7 @@ func runGetPage(cmd *cobra.Command, args []string) error {
 }
 
 func runSearchPages(cmd *cobra.Command, args []string) error {
-	client := NewScribeClient()
+	client := NewNotareClient()
 	opts := &ListOptions{
 		Limit:  limit,
 		Offset: offset,

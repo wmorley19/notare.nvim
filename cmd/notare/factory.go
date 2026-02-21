@@ -13,13 +13,13 @@ const (
 	Chalk      ProviderType = "chalk"
 )
 
-func NewScribeClient() ScribeProvider {
-	// 1. Check for an explicit override (e.g., SCRIBE_PROVIDER=chalk)
-	provider := ProviderType(os.Getenv("SCRIBE_PROVIDER"))
+func NewNotareClient() NotareProvider {
+	// 1. Check for an explicit override (e.g., NOATARE_PROVIDER=chalk)
+	provider := ProviderType(os.Getenv("NOATARE_PROVIDER"))
 
 	// 2. Logic to "Auto-Detect" if no override is provided
 	if provider == "" {
-		username := os.Getenv("SCRIBE_USERNAME")
+		username := os.Getenv("NOATARE_USERNAME")
 		if username == "" {
 			provider = Chalk
 		} else {
@@ -31,15 +31,15 @@ func NewScribeClient() ScribeProvider {
 	switch provider {
 	case Chalk:
 		return &ChalkClient{
-			BaseURL:  os.Getenv("SCRIBE_URL"),
-			APIToken: os.Getenv("SCRIBE_API_TOKEN"),
+			BaseURL:  os.Getenv("NOATARE_URL"),
+			APIToken: os.Getenv("NOATARE_API_TOKEN"),
 			Client:   &http.Client{},
 		}
 	default:
 		return &ConfluenceClient{
-			BaseURL:  os.Getenv("SCRIBE_URL"),
-			Username: os.Getenv("SCRIBE_USERNAME"),
-			APIToken: os.Getenv("SCRIBE_API_TOKEN"),
+			BaseURL:  os.Getenv("NOATARE_URL"),
+			Username: os.Getenv("NOATARE_USERNAME"),
+			APIToken: os.Getenv("NOATARE_API_TOKEN"),
 			Client:   &http.Client{},
 		}
 	}
