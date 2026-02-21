@@ -1,11 +1,11 @@
 local M = {}
-local utils = require("scribe.utils")
+local utils = require("notare.utils")
 local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local conf = require("telescope.config").values
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
-local spaces = require("scribe.spaces")
+local spaces = require("notare.spaces")
 
 function M.list_pages()
 	spaces.select_space_with_favorites(function(space)
@@ -115,10 +115,16 @@ function M.show_pages_for_space(space_key, offset, query, on_page_select)
 	local limit = 100
 
 	local args = {
-		"page", "search", "--space", space_key,
-		"--query", query,
-		"--limit", tostring(limit),
-		"--offset", tostring(offset),
+		"page",
+		"search",
+		"--space",
+		space_key,
+		"--query",
+		query,
+		"--limit",
+		tostring(limit),
+		"--offset",
+		tostring(offset),
 	}
 
 	vim.notify(string.format("Fetching pages %d-%d...", offset + 1, offset + limit), vim.log.levels.INFO)
@@ -132,7 +138,9 @@ function M.show_pages_for_space(space_key, offset, query, on_page_select)
 			return
 		end
 
-		local pages = (result.results and type(result.results) == "table" and result.results) or (type(result) == "table" and result) or {}
+		local pages = (result.results and type(result.results) == "table" and result.results)
+			or (type(result) == "table" and result)
+			or {}
 		if type(pages) ~= "table" then
 			pages = {}
 		end
@@ -187,7 +195,12 @@ function M.show_pages_for_space(space_key, offset, query, on_page_select)
 							return
 						end
 						if selection.value.action == "next_page" then
-							M.show_pages_for_space(current_space_key, current_offset + current_limit, current_query, current_on_select)
+							M.show_pages_for_space(
+								current_space_key,
+								current_offset + current_limit,
+								current_query,
+								current_on_select
+							)
 						elseif selection.value.id or selection.value.title then
 							utils.save_favorites({ key = current_space_key })
 							utils.save_recent_page(selection.value, current_space_key)
@@ -230,12 +243,12 @@ function M.open_page(page_obj)
 	if not webui or webui == "" then
 		webui = "/pages/viewpage.action?pageId=" .. tostring(page_obj.id)
 	end
-	local config = require("scribe").config
+	local config = require("notare").config
 	if not config then
-		vim.notify("Scribe config not found", vim.log.levels.ERROR)
+		vim.notify("Notare config not found", vim.log.levels.ERROR)
 		return
 	end
-	local url = utils.join_scribe_url(config.scribe_url, webui)
+	local url = utils.join_notare_url(config.notare_url, webui)
 	if url and url ~= "" then
 		local open_cmd = vim.fn.has("mac") == 1 and "open" or "xdg-open"
 		vim.fn.system(string.format("%s '%s'", open_cmd, url))

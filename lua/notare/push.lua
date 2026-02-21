@@ -1,11 +1,11 @@
 local M = {}
-local utils = require("scribe.utils")
+local utils = require("notare.utils")
 local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local conf = require("telescope.config").values
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
-local spaces = require("scribe.spaces")
+local spaces = require("notare.spaces")
 
 function M.push_current_file()
 	if not utils.is_markdown() then
@@ -22,7 +22,7 @@ function M.push_current_file()
 	-- If file has Confluence frontmatter (e.g. from a previous pull), update existing page instead of creating new
 	local frontmatter = utils.get_frontmatter()
 	if frontmatter and frontmatter.confluence_page_id then
-		require("scribe.update").update_current_file()
+		require("notare.update").update_current_file()
 		return
 	end
 
@@ -76,7 +76,7 @@ function M.push_current_file()
 				-- Open in browser
 				local open_cmd = vim.fn.has("mac") == 1 and "open" or "xdg-open"
 				local webui = (result._links and result._links.webui) or (result._link and result._link.webui) or ""
-				local url = utils.join_confluence_url(require("scribe").config.confluence_url, webui)
+				local url = utils.join_confluence_url(require("notare").config.confluence_url, webui)
 				vim.fn.system(string.format("%s '%s'", open_cmd, url))
 			end)
 		end)

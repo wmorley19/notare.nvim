@@ -3,18 +3,18 @@ local M = {}
 local health = vim.health or require("health")
 
 M.check = function()
-	health.start("Scribe.nvim")
+	health.start("notare.nvim")
 
 	-- Check if plugin is loaded
-	local ok, scribe = pcall(require, "scribe")
+	local ok, notare = pcall(require, "notare")
 	if not ok then
-		health.error("Failed to load scribe.nvim")
+		health.error("Failed to load notare.nvim")
 		return
 	end
 	health.ok("Plugin loaded successfully")
 
 	-- Check CLI binary
-	local cli_path = scribe.config.scribe_cli_path
+	local cli_path = notare.config.notare_cli_path
 	if not cli_path or cli_path == "" then
 		health.error("CLI binary path not configured")
 		health.info("Run: cd <plugin-dir> && bash scripts/install.sh")
@@ -36,20 +36,20 @@ M.check = function()
 	health.ok("CLI binary found and executable: " .. cli_path)
 
 	-- Check configuration
-	if scribe.config.confluence_url == "" then
+	if notare.config.confluence_url == "" then
 		health.warn("CONFLUENCE_URL not set")
 		health.info("Set environment variable or pass in setup()")
 	else
-		health.ok("Confluence URL configured: " .. scribe.config.confluence_url)
+		health.ok("Confluence URL configured: " .. notare.config.confluence_url)
 	end
 
-	if scribe.config.confluence_username == "" then
+	if notare.config.confluence_username == "" then
 		health.warn("CONFLUENCE_USERNAME not set")
 	else
 		health.ok("Confluence username configured")
 	end
 
-	if scribe.config.confluence_api_token == "" then
+	if notare.config.confluence_api_token == "" then
 		health.warn("CONFLUENCE_API_TOKEN not set")
 	else
 		health.ok("Confluence API token configured")

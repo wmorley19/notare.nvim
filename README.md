@@ -1,4 +1,4 @@
-# scribe.nvim
+# notare.nvim
 ## Push and pull your documentation pages directly from Neovim
 > Current support for Confluence Cloud and Confluence Data 9.2
 
@@ -28,14 +28,14 @@
 
 ```lua
 {
-  "wmorley19/scribe.nvim",
+  "wmorley19/notare.nvim",
   dependencies = {
     "nvim-telescope/telescope.nvim",
     "nvim-lua/plenary.nvim",
   },
-    build = "cd cmd/scribe && go build -o ../../bin/scribe-cli .",
+    build = "cd cmd/notare && go build -o ../../bin/notare-cli .",
   config = function()
-    require("scribe").setup{}
+    require("notare").setup{}
   end,
 }
 ```
@@ -44,14 +44,14 @@
 
 ```lua
 use {
-  "wmorley19/scribe.nvim",
+  "wmorley19/notare.nvim",
   requires = {
     "nvim-telescope/telescope.nvim",
     "nvim-lua/plenary.nvim",
   },
-        build = "cd cmd/scribe && go build -o ../../bin/scribe-cli .",
+        build = "cd cmd/notare && go build -o ../../bin/notare-cli .",
   config = function()
-    require("scribe").setup{}
+    require("notare").setup{}
   end,
 }
 ```
@@ -70,16 +70,16 @@ use {
 Add to your `~/.bashrc`, `~/.zshrc`, or shell config and restart shell `source ~/.zshrc`, `source ~/.bashrc` :
 
 ```bash
-export SCRIBE_URL="https://your-domain.atlassian.net"
-export SCRIBE_USERNAME="your-email@example.com" # Not required by Confluence Data 9.2
-export SCRIBE_API_TOKEN="your-api-token-here"
-export SCRIBE_PROVIDER="confluence" #or chalk, other providers coming soon 
+export notare_URL="https://your-domain.atlassian.net"
+export notare_USERNAME="your-email@example.com" # Not required by Confluence Data 9.2
+export notare_API_TOKEN="your-api-token-here"
+export notare_PROVIDER="confluence" #or chalk, other providers coming soon 
 ```
 
 ### 3. Verify Installation
 
 ```vim
-:checkhealth scribe
+:checkhealth notare
 ```
 
 ## 🚀 Usage
@@ -88,13 +88,13 @@ export SCRIBE_PROVIDER="confluence" #or chalk, other providers coming soon
 
 | Command | Description | Extra |
 |---------|-------------|--------|
-| `:ScribePush` | Create a new page from current buffer |
-| `:ScribeUpdate` | Update existing page with local changes |
-| `:ScribePull` | Download a page as markdown |
-| `:ScribeSpaces` | Browse all Confluence spaces | Use C-n to check next page | 
-| `:ScribePages` | Browse pages in a space | Use CQL to query for pages by title |
-| `:ScribeNewDoc` | Create new document from default template | This ships as default and can be customized for your projects |
-| `:ScribeNewDocTemplate` | Create new document and select from different templates for other types of docs |
+| `:notarePush` | Create a new page from current buffer |
+| `:notareUpdate` | Update existing page with local changes |
+| `:notarePull` | Download a page as markdown |
+| `:notareSpaces` | Browse all Confluence spaces | Use C-n to check next page | 
+| `:notarePages` | Browse pages in a space | Use CQL to query for pages by title |
+| `:notareNewDoc` | Create new document from default template | This ships as default and can be customized for your projects |
+| `:notareNewDocTemplate` | Create new document and select from different templates for other types of docs |
 
 When using Spaces and Pages each selection will store the file information as a favorite or recent for quick lookups
 Example location: `~/.local/share/nvim/lazy/`
@@ -121,7 +121,7 @@ Example location: `~/.local/share/nvim/lazy/`
    - Feature 3
    ```
 
-2. **Run `:ScribePush`**
+2. **Run `:notarePush`**
 
 3. **Select space** via Telescope fuzzy finder
 
@@ -151,11 +151,11 @@ confluence_title: My Documentation
 Updated content here...
 ```
 
-Just edit and run `:ScribeUpdate` to sync changes!
+Just edit and run `:notareUpdate` to sync changes!
 
 ### Workflow: Creating a New Document from Template
 
-1. **Run `:ScribeNewDoc`** (or `:ScribeNewDocTemplate` to select a template)
+1. **Run `:notareNewDoc`** (or `:notareNewDocTemplate` to select a template)
 
 2. **Enter document title**
 
@@ -163,13 +163,13 @@ Just edit and run `:ScribeUpdate` to sync changes!
 
 4. **Fill in the template** with your content
 
-5. **Save and push** using `:ScribePush`
+5. **Save and push** using `:notarePush`
 
 The plugin includes a default template at `templates/default.md` that you can customize for your team. You can also create additional templates in the `templates/` directory.
 
 ### Workflow: Pulling a Page
 
-1. Run `:ScribePull`
+1. Run `:notarePull`
 2. Select space
 3. Select page
 4. Page opens in new buffer with frontmatter
@@ -225,14 +225,14 @@ The plugin enforces HTTPS connections and validates inputs to prevent common att
 
 Run the health check:
 ```vim
-:checkhealth scribe
+:checkhealth notare
 ```
 
 ### Authentication errors
 
 - Verify your API token is correct
 - Check your username (should be your email)
-- Ensure SCRIBE_URL is correct (include https://)
+- Ensure notare_URL is correct (include https://)
 
 ### Markdown conversion issues
 
@@ -243,7 +243,7 @@ The plugin supports most common Markdown features. If something doesn't convert 
 ### Permission denied
 
 ```bash
-chmod +x ~/.local/share/nvim/lazy/scribe.nvim/bin/scribe-cli-*
+chmod +x ~/.local/share/nvim/lazy/notare.nvim/bin/notare-cli-*
 ```
 
 ## 🤝 Contributing
@@ -271,8 +271,8 @@ Built with:
 
 ## 📞 Support
 
-- 🐛 [Report bugs](https://github.com/wmorley19/scribe.nvim/issues)
-- 💡 [Request features](https://github.com/wmorley19/scribe.nvim/issues)
+- 🐛 [Report bugs](https://github.com/wmorley19/notare.nvim/issues)
+- 💡 [Request features](https://github.com/wmorley19/notare.nvim/issues)
 - ⭐ Star the repo if you find it useful!
 
 ---

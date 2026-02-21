@@ -1,5 +1,5 @@
 local M = {}
-local utils = require("scribe.utils")
+local utils = require("notare.utils")
 local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local conf = require("telescope.config").values
@@ -12,7 +12,7 @@ local function get_plugin_dir()
 	if source:sub(1, 1) == "@" then
 		source = source:sub(2)
 	end
-	-- Remove /lua/scribe/new.lua to get plugin root
+	-- Remove /lua/notare/new.lua to get plugin root
 	return vim.fn.fnamemodify(source, ":h:h:h")
 end
 
@@ -45,7 +45,7 @@ end
 
 function M.create_new_doc()
 	-- Get template path from config (optional)
-	local config = require("scribe").config
+	local config = require("notare").config
 	local template_path = config.template_path or ""
 
 	-- Load template
