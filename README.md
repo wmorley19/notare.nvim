@@ -70,10 +70,10 @@ use {
 Add to your `~/.bashrc`, `~/.zshrc`, or shell config and restart shell `source ~/.zshrc`, `source ~/.bashrc` :
 
 ```bash
-export notare_URL="https://your-domain.atlassian.net"
-export notare_USERNAME="your-email@example.com" # Not required by Confluence Data 9.2
-export notare_API_TOKEN="your-api-token-here"
-export notare_PROVIDER="confluence" #or chalk, other providers coming soon 
+export NOTARE_URL="https://your-domain.atlassian.net"
+export NOTARE_USERNAME="your-email@example.com" # Not required by Confluence Data 9.2
+export NOTARE_API_TOKEN="your-api-token-here"
+export NOTARE_PROVIDER="confluence" #or chalk, other providers coming soon 
 ```
 
 ### 3. Verify Installation
@@ -232,7 +232,7 @@ Run the health check:
 
 - Verify your API token is correct
 - Check your username (should be your email)
-- Ensure notare_URL is correct (include https://)
+- Ensure NOTARE_URL is correct (include https://)
 
 ### Markdown conversion issues
 
