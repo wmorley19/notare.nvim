@@ -1,6 +1,6 @@
 package main
 
-type ScribeProvider interface {
+type NotareProvider interface {
 	ListSpaces(opts *ListOptions) ([]Space, error)
 	CreatePage(spaceKey, title, content, parentID string) (*Page, error)
 	GetPage(pageID string) (*Page, error)

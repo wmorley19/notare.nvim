@@ -1,5 +1,5 @@
 local M = {}
-local utils = require("scribe.utils")
+local utils = require("notare.utils")
 local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local conf = require("telescope.config").values
@@ -123,7 +123,7 @@ end
 
 function M.list_spaces()
 	M.select_space_with_favorites(function(space)
-		require("scribe.pages").show_pages_for_space(space.key)
+		require("notare.pages").show_pages_for_space(space.key)
 	end)
 end
 
@@ -208,7 +208,7 @@ function M.search_all_spaces(offset, query, on_select)
 							if on_select then
 								on_select(selection.value)
 							else
-								require("scribe.pages").show_pages_for_space(selection.value.key)
+								require("notare.pages").show_pages_for_space(selection.value.key)
 							end
 						end
 					end)

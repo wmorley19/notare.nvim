@@ -1,5 +1,5 @@
 local M = {}
-local data_path = vim.fn.stdpath("data") .. "/scribe_favs.json"
+local data_path = vim.fn.stdpath("data") .. "/notare_favs.json"
 -- Read Favs.json to help manage large document stores
 function M.get_favorites()
 	if vim.fn.filereadable(data_path) == 0 then
@@ -166,8 +166,8 @@ end
 
 -- Execute confluence-cli command and return parsed JSON
 function M.execute_cli(args, callback)
-	local config = require("scribe").config
-	local cmd = config.scribe_cli_path
+	local config = require("notare").config
+	local cmd = config.notare_cli_path
 	local full_args = vim.list_extend({}, args)
 
 	local stdout = vim.loop.new_pipe(false)
@@ -205,7 +205,7 @@ function M.execute_cli(args, callback)
 	end)
 
 	if not handle then
-		vim.notify("Failed to spawn scribe-cli", vim.log.levels.ERROR)
+		vim.notify("Failed to spawn notare-cli", vim.log.levels.ERROR)
 		callback(nil, "Failed to spawn process")
 		return
 	end
@@ -299,7 +299,7 @@ function M.is_markdown()
 end
 
 -- Join Confluence URL with webui path
-function M.join_scribe_url(base_url, webui_path)
+function M.join_notare_url(base_url, webui_path)
 	webui_path = (webui_path and tostring(webui_path)) or ""
 	if webui_path == "" then
 		return (base_url and tostring(base_url)) or ""
@@ -313,8 +313,8 @@ function M.join_scribe_url(base_url, webui_path)
 	if not webui_path:match("^/") then
 		webui_path = "/" .. webui_path
 	end
-	local config = require("scribe").config
-	local no_wiki = config and config.scribe_no_wiki
+	local config = require("notare").config
+	local no_wiki = config and config.notare_no_wiki
 
 	if not no_wiki and not webui_path:match("^/wiki") then
 		webui_path = "/wiki" .. webui_path

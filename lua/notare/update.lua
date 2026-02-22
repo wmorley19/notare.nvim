@@ -1,5 +1,5 @@
 local M = {}
-local utils = require("scribe.utils")
+local utils = require("notare.utils")
 
 function M.update_current_file()
 	if not utils.is_markdown() then
@@ -17,7 +17,7 @@ function M.update_current_file()
 	local frontmatter = utils.get_frontmatter()
 	if not frontmatter or not frontmatter.confluence_page_id then
 		vim.notify(
-			"No confluence_page_id found in frontmatter. Use :ScribePush to create a new page.",
+			"No confluence_page_id found in frontmatter. Use :notarePush to create a new page.",
 			vim.log.levels.ERROR
 		)
 		return
@@ -43,7 +43,7 @@ function M.update_current_file()
 		-- Open in browser
 		local open_cmd = vim.fn.has("mac") == 1 and "open" or "xdg-open"
 		local webui = (result._links and result._links.webui) or (result._link and result._link.webui) or ""
-		local url = utils.join_scribe_url(require("scribe").config.scribe_url, webui)
+		local url = utils.join_notare_url(require("notare").config.notare_url, webui)
 
 		vim.notify("Updating Confluence page...", vim.log.levels.INFO)
 		vim.fn.system(string.format("%s '%s'", open_cmd, url))

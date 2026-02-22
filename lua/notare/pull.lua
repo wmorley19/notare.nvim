@@ -1,7 +1,7 @@
 local M = {}
-local utils = require("scribe.utils")
-local spaces = require("scribe.spaces")
-local pages = require("scribe.pages")
+local utils = require("notare.utils")
+local spaces = require("notare.spaces")
+local pages = require("notare.pages")
 
 function M.pull_page()
 	spaces.select_space_with_favorites(function(space)
