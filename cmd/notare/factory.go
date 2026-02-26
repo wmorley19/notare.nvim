@@ -14,10 +14,10 @@ const (
 )
 
 func NewNotareClient() NotareProvider {
-	// 1. Check for an explicit override (e.g., NOTARE_PROVIDER=chalk)
+	//  Check for an explicit override (e.g., NOTARE_PROVIDER=chalk)
 	provider := ProviderType(os.Getenv("NOTARE_PROVIDER"))
 
-	// 2. Logic to "Auto-Detect" if no override is provided
+	//  Logic to "Auto-Detect" if no override is provided
 	if provider == "" {
 		username := os.Getenv("NOTARE_USERNAME")
 		if username == "" {
@@ -27,7 +27,7 @@ func NewNotareClient() NotareProvider {
 		}
 	}
 
-	// 3. Return the correct "Actor"
+	//  Return the correct "Actor"
 	switch provider {
 	case Chalk:
 		return &ChalkClient{

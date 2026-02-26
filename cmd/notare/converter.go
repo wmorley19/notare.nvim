@@ -18,14 +18,13 @@ import (
 func ConvertMarkdownToConfluence(markdown string) string {
 	content := stripFrontmatter(markdown)
 
-	// 1. Configure Goldmark for Confluence compatibility
 	md := goldmark.New(
 		goldmark.WithExtensions(extension.GFM), // GitHub Flavored Markdown (tables, strikethrough)
 		goldmark.WithParserOptions(
 			parser.WithAutoHeadingID(),
 		),
 		goldmark.WithRendererOptions(
-			html.WithXHTML(),  // CRITICAL: Generates <br/>, <hr/>, <img ... /> for Data Center validity
+			html.WithXHTML(),
 			html.WithUnsafe(), // Allow raw HTML (in case user manually added macros)
 		),
 	)
@@ -72,7 +71,6 @@ func ConvertConfluenceToMarkdown(confluence string) string {
 	// Use GFM plugin (tables, strikethrough)
 	converter.Use(plugin.GitHubFlavored())
 
-	// 1. CUSTOM RULE: Handle Confluence Code Macros
 	// Confluence stores code in <ac:structured-macro ac:name="code">...
 	converter.AddRules(htmltomarkdown.Rule{
 		Filter: []string{"ac:structured-macro"},

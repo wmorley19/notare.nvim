@@ -17,13 +17,13 @@ M.check = function()
 	local cli_path = notare.config.notare_cli_path
 	if not cli_path or cli_path == "" then
 		health.error("CLI binary path not configured")
-		health.info("Run: cd <plugin-dir> && bash scripts/install.sh")
+		health.info("Run: cd <plugin-dir> go build -o ../../bin/notare-cli .")
 		return
 	end
 
 	if vim.fn.filereadable(cli_path) == 0 then
 		health.error("CLI binary not found at: " .. cli_path)
-		health.info("Run: cd <plugin-dir> && bash scripts/install.sh")
+		health.info("Run: cd <plugin-dir> go build -o ../../bin/notare-cli .")
 		return
 	end
 
@@ -37,22 +37,22 @@ M.check = function()
 
 	-- Check configuration
 	if notare.config.confluence_url == "" then
-		health.warn("CONFLUENCE_URL not set")
+		health.warn("NOTARE_URL not set")
 		health.info("Set environment variable or pass in setup()")
 	else
-		health.ok("Confluence URL configured: " .. notare.config.confluence_url)
+		health.ok("Notare URL configured: " .. notare.config.confluence_url)
 	end
 
 	if notare.config.confluence_username == "" then
-		health.warn("CONFLUENCE_USERNAME not set")
+		health.warn("NOTARE_USERNAME not set")
 	else
-		health.ok("Confluence username configured")
+		health.ok("Notare username configured")
 	end
 
 	if notare.config.confluence_api_token == "" then
-		health.warn("CONFLUENCE_API_TOKEN not set")
+		health.warn("NOTARE_API_TOKEN not set")
 	else
-		health.ok("Confluence API token configured")
+		health.ok("Notare API token configured")
 	end
 
 	-- Check dependencies
@@ -79,7 +79,7 @@ M.check = function()
 		local result = handle:read("*a")
 		handle:close()
 
-		if result:match("CONFLUENCE_URL") or result:match("API") then
+		if result:match("NOTARE_URL") or result:match("API") then
 			health.ok("CLI executes successfully (credentials may need setup)")
 		elseif result:match("Error") or result:match("error") then
 			health.warn("CLI execution returned error (check credentials)")

@@ -164,7 +164,7 @@ function M.add_page_favorite(page_obj, space_key)
 	write_favorites(data)
 end
 
--- Execute confluence-cli command and return parsed JSON
+-- Execute notare-cli command and return parsed JSON
 function M.execute_cli(args, callback)
 	local config = require("notare").config
 	local cmd = config.notare_cli_path
@@ -189,7 +189,7 @@ function M.execute_cli(args, callback)
 			local stderr_data = table.concat(stderr_chunks, "")
 
 			if code ~= 0 then
-				vim.notify("Confluence CLI error: " .. stderr_data, vim.log.levels.ERROR)
+				vim.notify("Notare CLI error: " .. stderr_data, vim.log.levels.ERROR)
 				callback(nil, stderr_data)
 				return
 			end

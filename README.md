@@ -88,13 +88,13 @@ export NOTARE_PROVIDER="confluence" #or chalk, other providers coming soon
 
 | Command | Description | Extra |
 |---------|-------------|--------|
-| `:notarePush` | Create a new page from current buffer |
-| `:notareUpdate` | Update existing page with local changes |
-| `:notarePull` | Download a page as markdown |
-| `:notareSpaces` | Browse all Confluence spaces | Use C-n to check next page | 
-| `:notarePages` | Browse pages in a space | Use CQL to query for pages by title |
-| `:notareNewDoc` | Create new document from default template | This ships as default and can be customized for your projects |
-| `:notareNewDocTemplate` | Create new document and select from different templates for other types of docs |
+| `:NotarePush` | Create a new page from current buffer |
+| `:NotareUpdate` | Update existing page with local changes |
+| `:NotarePull` | Download a page as markdown |
+| `:NotareSpaces` | Browse all Confluence spaces | Use C-n to check next page | 
+| `:NotarePages` | Browse pages in a space | Use CQL to query for pages by title |
+| `:NotareNewDoc` | Create new document from default template | This ships as default and can be customized for your projects |
+| `:NotareNewDocTemplate` | Create new document and select from different templates for other types of docs |
 
 When using Spaces and Pages each selection will store the file information as a favorite or recent for quick lookups
 Example location: `~/.local/share/nvim/lazy/`
@@ -121,7 +121,7 @@ Example location: `~/.local/share/nvim/lazy/`
    - Feature 3
    ```
 
-2. **Run `:notarePush`**
+2. **Run `:NotarePush`**
 
 3. **Select space** via Telescope fuzzy finder
 
@@ -151,11 +151,11 @@ confluence_title: My Documentation
 Updated content here...
 ```
 
-Just edit and run `:notareUpdate` to sync changes!
+Just edit and run `:NotareUpdate` to sync changes!
 
 ### Workflow: Creating a New Document from Template
 
-1. **Run `:notareNewDoc`** (or `:notareNewDocTemplate` to select a template)
+1. **Run `:NotareNewDoc`** (or `:notareNewDocTemplate` to select a template)
 
 2. **Enter document title**
 
@@ -163,13 +163,13 @@ Just edit and run `:notareUpdate` to sync changes!
 
 4. **Fill in the template** with your content
 
-5. **Save and push** using `:notarePush`
+5. **Save and push** using `:NotarePush`
 
 The plugin includes a default template at `templates/default.md` that you can customize for your team. You can also create additional templates in the `templates/` directory.
 
 ### Workflow: Pulling a Page
 
-1. Run `:notarePull`
+1. Run `:NotarePull`
 2. Select space
 3. Select page
 4. Page opens in new buffer with frontmatter
